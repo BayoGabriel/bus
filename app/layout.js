@@ -1,37 +1,36 @@
-import './globals.css'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
+import './globals.css'
+import { Providers } from './providers'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'BusGo - Your Ultimate Bus Booking Platform',
-  description: 'Book bus tickets easily with BusGo. Choose from various parks, routes, and prices.',
+  title: 'BusGo - Nigeria\'s Premier Bus Booking Platform',
+  description: 'Book bus tickets across Nigeria with multiple operators and terminals. Compare prices, routes, and schedules for the best travel experience.',
+  keywords: 'bus booking, Nigeria bus tickets, interstate travel, bus terminals, transport operators',
+  openGraph: {
+    title: 'BusGo - Nigeria\'s Premier Bus Booking Platform',
+    description: 'Book bus tickets across Nigeria with multiple operators and terminals',
+    type: 'website',
+    locale: 'en_NG',
+    url: 'https://busgo.ng',
+  },
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header className="bg-blue-600 text-white p-4">
-          <nav className="container mx-auto flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold">BusGo</Link>
-            <div className="space-x-4">
-              <Link href="/search" className="hover:underline">Search</Link>
-              <Link href="/parks" className="hover:underline">Parks</Link>
-              <Link href="/dashboard" className="hover:underline">Dashboard</Link>
-              <Link href="/login" className="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-blue-100">Login</Link>
-            </div>
-          </nav>
-        </header>
-        <main>{children}</main>
-        <footer className="bg-gray-100 p-4 mt-8">
-          <div className="container mx-auto text-center text-gray-600">
-            © 2023 BusGo. All rights reserved.
-          </div>
-        </footer>
+        <Providers>
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )
 }
-
